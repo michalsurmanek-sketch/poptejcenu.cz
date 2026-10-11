@@ -75,6 +75,12 @@
       .step h3{font-size:14px}
       .step p{font-size:12px}
     }
+      .types{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .type-card{display:block;width:100%;appearance:none;font:inherit;text-align:left;color:var(--ink);cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s}
+    .type-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(24,63,53,.12);border-color:#9db7a6}
+    .type-card[aria-pressed="true"]{border:2px solid var(--green);box-shadow:0 0 0 4px rgba(24,63,53,.12)}
+    .type-card:focus-visible{outline:3px solid #db9f32;outline-offset:3px}
+    @media(max-width:900px){.types{grid-template-columns:repeat(2,minmax(0,1fr))}}
   </style>
 </head>
 <body>
@@ -112,9 +118,17 @@
   <div class="calc-result" aria-live="polite"><div><h3>Orientační materiál</h3><p id="calcSummary">Pro zadanou délku přibližně potřebujete:</p></div><div class="numbers"><div class="numberbox"><b id="panelCount">10</b><span>panelů po 2,5 m</span></div><div class="numberbox"><b id="postCount">11</b><span>sloupků bez bran</span></div></div><p class="calc-note">Jde o orientační výpočet bez ceny. Přesný počet závisí na rozměrech panelů, branách, rohových sloupcích, sklonu pozemku a způsobu montáže. Pro přesné nacenění odešlete poptávku.</p></div></div>
 </div></section>
 
-<section class="section section-sage" id="typy"><div class="wrap"><div class="section-head"><h2>Jaký plot řešíte?</h2><p>Do poptávky můžete uvést hotovou představu nebo napsat, s čím potřebujete poradit.</p></div>
+<section class="section section-sage" id="typy"><div class="wrap"><div class="section-head"><h2>Jaký plot řešíte?</h2><p>Klikněte na typ plotu. Výběr doplníme do nezávazné poptávky.</p></div>
 <div class="types">
-  <article class="type-card"><span class="type-icon">▤</span><h3>Panelový 2D / 3D</h3><p>Pevné svařované panely a sladěné příslušenství.</p></article><article class="type-card"><span class="type-icon">▦</span><h3>Pletivový</h3><p>Poplastované, pozinkované i svařované pletivo.</p></article><article class="type-card"><span class="type-icon">▥</span><h3>Betonový</h3><p>Soukromí, odolnost a více dekorů.</p></article><article class="type-card"><span class="type-icon">▧</span><h3>Gabionový</h3><p>Koše a gabionové systémy různých provedení.</p></article><article class="type-card"><span class="type-icon">⌁</span><h3>Dřevěný</h3><p>Přírodní vzhled a různé typy výplní.</p></article><article class="type-card"><span class="type-icon">▥</span><h3>WPC / hliníkový</h3><p>Moderní materiály a čisté linie.</p></article><article class="type-card"><span class="type-icon">▤</span><h3>Zděný / kovový</h3><p>Řešení na míru domu i pozemku.</p></article><article class="type-card"><span class="type-icon">✳</span><h3>Brána, branka i jiné</h3><p>Doplňte oplocení o vstup nebo pohon.</p></article>
+  <button class="type-card" type="button" data-fence-type="Panelový 2D" data-fence-options="Panelový 2D|Panelový 3D" aria-pressed="false"><span class="type-icon" aria-hidden="true">▤</span><h3>Panelový 2D / 3D</h3><p>Pevné svařované panely a sladěné příslušenství.</p></button>
+  <button class="type-card" type="button" data-fence-type="Pletivový" aria-pressed="false"><span class="type-icon" aria-hidden="true">▦</span><h3>Pletivový</h3><p>Poplastované, pozinkované i svařované pletivo.</p></button>
+  <button class="type-card" type="button" data-fence-type="Betonový" aria-pressed="false"><span class="type-icon" aria-hidden="true">▥</span><h3>Betonový</h3><p>Soukromí, odolnost a více dekorů.</p></button>
+  <button class="type-card" type="button" data-fence-type="Gabionový" aria-pressed="false"><span class="type-icon" aria-hidden="true">▧</span><h3>Gabionový</h3><p>Koše a gabionové systémy různých provedení.</p></button>
+  <button class="type-card" type="button" data-fence-type="Dřevěný" aria-pressed="false"><span class="type-icon" aria-hidden="true">⌁</span><h3>Dřevěný</h3><p>Přírodní vzhled a různé typy výplní.</p></button>
+  <button class="type-card" type="button" data-fence-type="WPC" aria-pressed="false"><span class="type-icon" aria-hidden="true">▥</span><h3>WPC</h3><p>Moderní bezúdržbové oplocení.</p></button>
+  <button class="type-card" type="button" data-fence-type="Hliníkový" aria-pressed="false"><span class="type-icon" aria-hidden="true">▥</span><h3>Hliníkový</h3><p>Čisté linie a dlouhá životnost.</p></button>
+  <button class="type-card" type="button" data-fence-type="Zděný nebo kovový" aria-pressed="false"><span class="type-icon" aria-hidden="true">▤</span><h3>Zděný / kovový</h3><p>Řešení na míru domu i pozemku.</p></button>
+  <button class="type-card" type="button" data-fence-type="Brána nebo branka" aria-pressed="false"><span class="type-icon" aria-hidden="true">✳</span><h3>Brána, branka i jiné</h3><p>Doplňte oplocení o vstup nebo pohon.</p></button>
 </div></div></section>
 
 
@@ -146,6 +160,16 @@
   const menu = $('#menuBtn'), nav = $('#navLinks');
   menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu'); menu.textContent = open ? '×' : '☰'; });
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.textContent='☰'; }));
+  const typeSelect=$('#type');
+  const fenceCards=[...document.querySelectorAll('.type-card[data-fence-type]')];
+  const syncFenceCardSelection=value=>fenceCards.forEach(card=>{const options=(card.dataset.fenceOptions||card.dataset.fenceType).split('|');card.setAttribute('aria-pressed',String(options.includes(value));});
+  fenceCards.forEach(card=>card.addEventListener('click',()=>{
+    typeSelect.value=card.dataset.fenceType;
+    typeSelect.dispatchEvent(new Event('change',{bubbles:true}));
+    $('#poptavka').scrollIntoView({behavior:'smooth',block:'start'});
+    typeSelect.focus({preventScroll:true});
+  }));
+  typeSelect.addEventListener('change',()=>syncFenceCardSelection(typeSelect.value));
   const renderCalc = () => { const raw=Number($('#calcLength').value); const length=Number.isFinite(raw)?Math.max(0,Math.min(1000,raw)):0; const fields=length?Math.ceil(length/2.5):0; $('#panelCount').textContent=String(fields); $('#postCount').textContent=String(fields?fields+1:0); $('#calcSummary').textContent=length?'Pro délku '+new Intl.NumberFormat('cs-CZ',{maximumFractionDigits:1}).format(length)+' m přibližně potřebujete:':'Zadejte délku plotu větší než nula.'; };
   $('#calcLength').addEventListener('input',renderCalc); $('#calcType').addEventListener('change',renderCalc);
   $('#useCalc').addEventListener('click',()=>{$('#type').value=$('#calcType').value.includes('3D')?'Panelový 3D':'Panelový 2D';$('#length').value=$('#calcLength').value;$('#poptavka').scrollIntoView({behavior:'smooth'});$('#type').focus({preventScroll:true});});
