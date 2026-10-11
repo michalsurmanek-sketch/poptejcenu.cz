@@ -81,6 +81,28 @@
     .type-card[aria-pressed="true"]{border:2px solid var(--green);box-shadow:0 0 0 4px rgba(24,63,53,.12)}
     .type-card:focus-visible{outline:3px solid #db9f32;outline-offset:3px}
     @media(max-width:900px){.types{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  
+    /* Mobilní typografie: běžná čitelná velikost textu */
+    @media(max-width:760px){
+      .brand small{font-size:12px}
+      .hero-benefit{font-size:14px}
+      .hero-benefit strong{font-size:16px}
+      .step h3{font-size:16px}
+      .step p,.section-head p,.panel .sub,.type-card p,.faq p,.footer p,.footer a,.field label,.consent,.notice{font-size:15px}
+      .type-card h3{font-size:18px}
+      .trustline{font-size:14px}
+      .calc-note{font-size:14px!important}
+      .numberbox span,.fence-caption span{font-size:14px}
+      .fineprint{font-size:14px}
+      .status{font-size:15px}
+    }
+    @media(max-width:380px){
+      .brand small{font-size:12px}
+      .hero-benefit{font-size:14px}
+      .hero-benefit strong{font-size:15px}
+      .step h3{font-size:15px}
+      .step p{font-size:14px}
+    }
   </style>
 </head>
 <body>
