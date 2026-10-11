@@ -103,7 +103,34 @@
       .step h3{font-size:15px}
       .step p{font-size:14px}
     }
-  </style>
+  
+    /* Čitelnost mobilu: žádné běžné popisky pod 15 px */
+    @media(max-width:760px){
+      body{font-size:17px;line-height:1.65}
+      .brand small{font-size:13px}
+      .navlinks a{font-size:16px}
+      .eyebrow{font-size:14px}
+      .hero-benefit{font-size:15px;line-height:1.45}
+      .hero-benefit strong{font-size:16px}
+      .step h3{font-size:17px}
+      .step p,.section-head p,.panel .sub,.type-card p,.faq p,.footer p,.footer a,.field label,.consent,.notice{font-size:16px}
+      .type-card h3{font-size:19px}
+      .trustline{font-size:15px}
+      .calc-note{font-size:15px!important}
+      .numberbox span,.fence-caption span{font-size:15px}
+      .fineprint{font-size:15px}
+      .status{font-size:16px}
+      .field input,.field select,.field textarea{font-size:16px}
+    }
+    @media(max-width:380px){
+      body{font-size:16px}
+      .hero-benefit{font-size:14px}
+      .hero-benefit strong{font-size:15px}
+      .step h3{font-size:16px}
+      .step p{font-size:15px}
+      .footer p,.footer a,.fineprint{font-size:15px}
+    }
+</style>
 </head>
 <body>
 <header class="topbar"><div class="wrap nav">
