@@ -1,310 +1,123 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PoptejCenu.cz – Zadej poptávku a získej nabídky</title>
-
-  <!-- Google Fonts (CZ diakritika) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Roboto', 'ui-sans-serif', 'system-ui'] },
-          colors: {
-            primary: {
-              50: '#eef6ff', 100: '#d9ecff', 200: '#b7d8ff', 300: '#8fc0ff',
-              400: '#5ea0ff', 500: '#2f82ff', 600: '#1367e6', 700: '#0c52bd',
-              800: '#0d4599', 900: '#0e397c'
-            },
-            accent: { 500: '#f59e0b' } // žluto-oranžová CTA
-          },
-          boxShadow: {
-            soft: '0 10px 25px rgba(0,0,0,0.08)'
-          }
-        }
-      }
-    }
-  </script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b6843">
+  <meta name="description" content="Poptávka plotu na míru. Vyberte typ oplocení, délku, výšku a místo realizace. Přehled všech hlavních typů plotů podle nabídky Plotao.">
+  <link rel="canonical" href="https://poptejcenu.cz/">
+  <title>Poptávka plotu | PoptejCenu.cz</title>
   <style>
-    html { scroll-behavior: smooth; }
-    .glass { backdrop-filter: saturate(140%) blur(12px); }
-    /* Fix iOS input shadow */
-    input, select, textarea { -webkit-appearance: none; }
+    :root{--green:#087443;--green-dark:#075735;--green-pale:#eaf5ee;--orange:#f07828;--ink:#17251e;--muted:#68776f;--line:#dce6df;--paper:#fff;--bg:#f5f8f5;--shadow:0 20px 55px #153a2712;--radius:24px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}.container{width:min(1160px,calc(100% - 40px));margin-inline:auto}.site-header{position:sticky;top:0;z-index:30;background:#ffffffed;backdrop-filter:blur(16px);border-bottom:1px solid #dce6df}.header-row{height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:900;letter-spacing:-.04em;font-size:21px}.brand-mark{width:39px;height:39px;display:grid;place-items:center;background:var(--green);border-radius:13px;color:white;box-shadow:0 6px 16px #08744330}.brand-mark svg{width:23px;height:23px}.brand em{color:var(--green);font-style:normal}.nav{display:flex;align-items:center;gap:27px;font-size:14px;font-weight:700;color:#53645a}.nav a{text-decoration:none}.nav a:hover{color:var(--green)}.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:13px;padding:14px 20px;background:var(--orange);color:#fff;text-decoration:none;font-weight:850;box-shadow:0 9px 22px #f0782830;transition:transform .18s,background .18s}.button:hover{background:#dc6419;transform:translateY(-1px)}.button.green{background:var(--green);box-shadow:0 9px 22px #08744324}.button.green:hover{background:var(--green-dark)}.button.secondary{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}.menu-button{display:none;background:white;border:1px solid var(--line);border-radius:11px;padding:9px}.hero{position:relative;overflow:hidden;background:linear-gradient(112deg,#f2f8f3 0%,#f9fbf8 55%,#e8f4ec 100%);border-bottom:1px solid var(--line)}.hero:after{position:absolute;content:"";width:460px;height:460px;border-radius:50%;right:-160px;top:-180px;background:#d8ecdf80}.hero-grid{position:relative;z-index:1;min-height:440px;padding-block:65px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--green);text-transform:uppercase;letter-spacing:.11em;font-size:12px;font-weight:900}.eyebrow:before{content:"";width:28px;height:3px;border-radius:3px;background:var(--orange)}h1{font-size:clamp(42px,5.3vw,65px);line-height:1.02;letter-spacing:-.06em;margin:18px 0 18px;max-width:660px}.hero-copy>p{font-size:18px;line-height:1.62;color:#596b60;max-width:560px;margin:0}.hero-points{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:26px;color:#4c6054;font-size:13px;font-weight:700}.hero-points span{display:flex;align-items:center;gap:8px}.check{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#d9eee0;color:var(--green);font-size:12px;font-weight:900}.hero-image{min-height:310px;border-radius:32px;overflow:hidden;position:relative;background:linear-gradient(135deg,#d8e6dc,#9ab4a1);box-shadow:var(--shadow)}.hero-image:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#10241caa,transparent 58%),url('https://plotao.cz/assets/fence-types/panelovy-3d.webp') center/cover no-repeat}.hero-caption{position:absolute;left:24px;right:24px;bottom:21px;color:white}.hero-caption strong{font-size:19px;display:block}.hero-caption span{font-size:13px;color:#e6f1e9}.quick-note{position:absolute;right:16px;top:16px;background:white;border-radius:14px;padding:12px 15px;font-size:12px;font-weight:800;box-shadow:0 8px 24px #10241c22}.quick-note b{display:block;font-size:17px;color:var(--green)}.section{padding:82px 0}.section-heading{max-width:710px;margin-bottom:32px}.section-heading h2{font-size:clamp(30px,4vw,43px);line-height:1.08;letter-spacing:-.045em;margin:12px 0}.section-heading p{font-size:16px;line-height:1.6;color:var(--muted);margin:0}.fence-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.fence-card{padding:0;text-align:left;background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #183c2808;transition:.2s;position:relative;color:var(--ink)}.fence-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.fence-card[aria-pressed="true"]{border:2px solid var(--green);box-shadow:0 0 0 4px #08744316}.fence-card img{display:block;width:100%;height:118px;object-fit:cover;background:#e9f1eb}.fence-card-copy{padding:14px 15px 15px}.fence-card h3{font-size:15px;line-height:1.22;margin:0 0 6px}.fence-card p{font-size:12px;line-height:1.42;color:var(--muted);margin:0}.selected-mark{display:none;position:absolute;right:10px;top:10px;background:var(--green);color:#fff;width:25px;height:25px;border-radius:50%;place-items:center;font-size:14px;font-weight:900;border:2px solid white}.fence-card[aria-pressed="true"] .selected-mark{display:grid}.form-section{padding:22px 0 86px}.form-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:26px;align-items:start}.form-card,.aside-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.form-card{padding:34px}.form-heading{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--line)}.form-heading h2{font-size:30px;letter-spacing:-.04em;margin:6px 0}.form-heading p{color:var(--muted);margin:0;line-height:1.55}.required-note{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:7px}.step-title{display:flex;align-items:center;gap:12px;margin:28px 0 16px}.step-number{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--green-pale);color:var(--green);font-size:13px;font-weight:900}.step-title h3{margin:0;font-size:18px;letter-spacing:-.02em}.fields{display:grid;grid-template-columns:1fr 1fr;gap:17px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label,.field-label{font-size:13px;font-weight:800;color:#35493d}.field input,.field select,.field textarea{width:100%;border:1px solid #cfdcd3;border-radius:11px;background:#fff;padding:12px 13px;color:var(--ink);outline:0;transition:border .16s,box-shadow .16s}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #0874431a}.field textarea{min-height:108px;resize:vertical}.help{font-size:11px;color:var(--muted);line-height:1.4}.choice-row{display:flex;flex-wrap:wrap;gap:9px}.choice{position:relative}.choice input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}.choice span{min-height:42px;display:flex;align-items:center;gap:8px;border:1px solid #d4dfd7;border-radius:11px;padding:10px 13px;font-size:12px;font-weight:750;color:#526258;transition:.15s}.choice input:checked+span{background:#eaf5ee;border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}.choice input:focus-visible+span{outline:3px solid #08744338}.form-actions{display:flex;align-items:center;gap:15px;flex-wrap:wrap;margin-top:25px}.form-actions .button{min-width:210px}.status{display:none;margin-top:18px;padding:14px 16px;border-radius:12px;font-size:13px;line-height:1.5}.status.show{display:block}.status.error{background:#fff2eb;color:#8d3713;border:1px solid #f4c7ad}.status.success{background:#edf8f0;color:#145c34;border:1px solid #c8e4d0}.consent{display:flex;align-items:flex-start;gap:10px;margin-top:18px;color:#637168;font-size:12px;line-height:1.5}.consent input{margin:2px 0 0;accent-color:var(--green);width:16px;height:16px;flex:none}.consent a{color:var(--green);font-weight:700}.aside-card{padding:24px;position:sticky;top:100px}.aside-card h3{font-size:18px;margin:0 0 17px}.aside-step{display:flex;gap:12px;padding:14px 0;border-top:1px solid #e8eee9}.aside-step:first-of-type{border-top:0;padding-top:0}.aside-icon{width:35px;height:35px;border-radius:11px;background:var(--green-pale);display:grid;place-items:center;flex:none;color:var(--green);font-size:16px;font-weight:900}.aside-step strong{font-size:13px;display:block;margin:1px 0 4px}.aside-step p{font-size:12px;color:var(--muted);line-height:1.45;margin:0}.aside-warning{background:#f6f8f6;border-radius:12px;padding:13px;margin-top:15px;font-size:11px;line-height:1.5;color:#68776f}.how{background:#fff;border-block:1px solid var(--line)}.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.how-card{padding:24px;border:1px solid var(--line);border-radius:18px;background:#fbfdfb}.how-card .step-number{margin-bottom:18px}.how-card h3{font-size:17px;margin:0 0 8px}.how-card p{color:var(--muted);font-size:13px;line-height:1.55;margin:0}.bottom-cta{padding:55px 0;background:var(--green-dark);color:#fff}.bottom-cta-row{display:flex;align-items:center;justify-content:space-between;gap:28px}.bottom-cta h2{font-size:clamp(25px,3.5vw,36px);letter-spacing:-.04em;margin:0 0 8px}.bottom-cta p{color:#d7e9dc;margin:0}.footer{padding:34px 0;color:#68776f;font-size:12px}.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.footer-links{display:flex;gap:18px;flex-wrap:wrap}.footer a{color:var(--green)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:1000px){.fence-grid{grid-template-columns:repeat(3,1fr)}.form-layout{grid-template-columns:minmax(0,1fr) 280px}.hero-grid{gap:35px}.hero-image{min-height:280px}}
+    @media(max-width:760px){.container{width:min(100% - 32px,600px)}.header-row{height:66px}.nav{display:none;position:absolute;left:0;right:0;top:66px;padding:16px 20px 20px;background:white;border-bottom:1px solid var(--line);box-shadow:0 15px 25px #183c2810;flex-direction:column;align-items:stretch;gap:0}.nav.open{display:flex}.nav a{padding:12px 4px;border-bottom:1px solid #eef2ef}.nav .button{margin-top:12px;text-align:center}.menu-button{display:block}.hero-grid{padding-block:42px;grid-template-columns:1fr;gap:28px}.hero-copy>p{font-size:16px}.hero-points{gap:10px 14px}.hero-image{min-height:280px}.section{padding:60px 0}.fence-grid{grid-template-columns:repeat(2,1fr);gap:11px}.fence-card img{height:112px}.form-section{padding:0 0 60px}.form-layout{grid-template-columns:1fr}.form-card{padding:24px 20px}.aside-card{position:static;order:-1}.aside-card h3{margin-bottom:10px}.aside-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.aside-step{display:block;border:1px solid var(--line);border-radius:12px;padding:12px!important}.aside-icon{margin-bottom:9px}.aside-warning{margin-top:11px}.how-grid{grid-template-columns:1fr}.how-card{padding:20px}.bottom-cta-row{align-items:flex-start;flex-direction:column}.footer-row{flex-direction:column}}
+    @media(max-width:430px){.brand{font-size:18px}.hero-grid{padding-top:34px}.hero-image{min-height:245px}.quick-note{right:10px;top:10px}.fence-card img{height:92px}.fence-card-copy{padding:11px}.fence-card h3{font-size:13px}.fence-card p{font-size:11px}.form-heading{display:block}.required-note{padding-top:10px}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.aside-steps{grid-template-columns:1fr}.aside-step{display:flex}.aside-icon{margin:0}.section-heading h2{font-size:31px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
 </head>
-<body class="bg-gradient-to-b from-white to-slate-50 text-slate-900 font-sans">
-  <!-- Top bar -->
-  <header class="sticky top-0 z-50 bg-white/80 glass border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-2 group">
-          <div class="w-9 h-9 rounded-xl bg-primary-600 grid place-items-center shadow-soft">
-            <!-- Simple shield icon -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3l7 3v6c0 4.97-3.05 8.27-7 9-3.95-.73-7-4.03-7-9V6l7-3z" class="fill-white/90"/>
-            </svg>
-          </div>
-          <div>
-            <div class="text-lg font-black leading-4 tracking-tight">PoptejCenu.cz</div>
-            <div class="text-[11px] text-slate-500 -mt-0.5">Zadej poptávku · získej nabídky</div>
-          </div>
-        </a>
-
-        <!-- Desktop nav -->
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#kategorie" class="hover:text-primary-700">Kategorie</a>
-          <a href="#jak-to-funguje" class="hover:text-primary-700">Jak to funguje</a>
-          <a href="#reference" class="hover:text-primary-700">Reference</a>
-          <a href="#formular" class="px-4 py-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 shadow-soft">Zadat poptávku</a>
-        </nav>
-
-        <!-- Mobile hamburger -->
-        <button id="hamburger" class="md:hidden p-2 rounded-lg border border-slate-200" aria-label="Otevřít menu" aria-expanded="false">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white/95 glass">
-      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
-        <a href="#kategorie" class="py-2" data-close="menu">Kategorie</a>
-        <a href="#jak-to-funguje" class="py-2" data-close="menu">Jak to funguje</a>
-        <a href="#reference" class="py-2" data-close="menu">Reference</a>
-        <a href="#formular" class="py-2 px-3 rounded-lg bg-primary-600 text-white w-fit" data-close="menu">Zadat poptávku</a>
-      </div>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="PoptejCenu.cz – úvod"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V7l8-4 8 4v13M8 20v-6h8v6M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Poptej<em>Cenu</em>.cz</span></a>
+      <nav class="nav" id="mainNav" aria-label="Hlavní navigace"><a href="#typy">Typy plotů</a><a href="#jak-to-funguje">Jak to funguje</a><a href="#formular" class="button">Poptat plot <span aria-hidden="true">→</span></a></nav>
+      <button class="menu-button" id="menuButton" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mainNav"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     </div>
   </header>
-
-  <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-10 bg-gradient-to-br from-primary-50 via-white to-slate-50"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
-          Poptat cenu nikdy nebylo snazší
-        </h1>
-        <p class="mt-4 text-slate-600 text-base sm:text-lg">
-          Vyplň krátký formulář, my oslovíme prověřené dodavatele a ty si vybereš nejlepší nabídku. Zdarma a nezávazně.
-        </p>
-        <div class="mt-6 flex flex-wrap items-center gap-3 text-sm text-slate-600">
-          <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-600"></span> 3+ kategorie služeb</div>
-          <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-600"></span> Odpověď obvykle do 24 h</div>
-          <div class="flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-primary-600"></span> Poptávka je zdarma</div>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy"><div class="eyebrow">Poptávka oplocení</div><h1>Hledáte plot? Začněte jednou poptávkou.</h1><p>Vyberte typ oplocení, zadejte přibližné rozměry a místo realizace. Doplňte podklady pro nezávazné nacenění vašeho plotu.</p><div class="hero-points"><span><i class="check">✓</i> Všechny hlavní typy plotů</span><span><i class="check">✓</i> Materiál i montáž</span><span><i class="check">✓</i> Bez závazné objednávky</span></div></div>
+        <div class="hero-image" role="img" aria-label="Moderní panelový plot u rodinného domu"><div class="quick-note"><b>10 typů</b>oplocení v nabídce</div><div class="hero-caption"><strong>Od pletiva po zděný plot</strong><span>Vyberte řešení podle pozemku, soukromí a rozpočtu.</span></div></div>
+      </div>
+    </section>
+    <section class="section" id="typy">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">Vyberte oplocení</div><h2>Jaký plot potřebujete?</h2><p>Členění vychází z přehledu typů plotů na Plotao.cz. Zvolte hlavní kategorii; konkrétní provedení upřesníte ve formuláři.</p></div>
+        <div class="fence-grid" id="fenceGrid" aria-label="Typy oplocení"></div>
+      </div>
+    </section>
+    <section class="form-section" id="formular">
+      <div class="container form-layout">
+        <div class="form-card">
+          <div class="form-heading"><div><div class="eyebrow">Nezávazná poptávka</div><h2>Popište svůj plot</h2><p>Vyplnění zabere přibližně 2 minuty. Povinná pole jsou označena hvězdičkou.</p></div><div class="required-note">* povinné</div></div>
+          <form id="leadForm" novalidate>
+            <input type="hidden" name="fence_type" id="fenceType">
+            <input type="hidden" name="started_at" id="startedAt">
+            <div class="step-title"><span class="step-number">1</span><h3>Typ a rozsah plotu</h3></div>
+            <div class="fields">
+              <div class="field"><label for="subtype">Provedení plotu *</label><select id="subtype" name="subtype" required><option value="">Nejprve vyberte typ plotu</option></select><span class="help" id="subtypeHelp">Vyberte typ plotu z karet výše.</span></div>
+              <div class="field"><label for="length">Přibližná délka oplocení (m) *</label><input id="length" name="length_m" type="number" min="1" max="1000" step="1" inputmode="numeric" placeholder="např. 42" required><span class="help">Zadejte celkovou délku; pokud si nejste jistí, uveďte odhad.</span></div>
+              <div class="field"><label for="height">Požadovaná výška</label><select id="height" name="height"><option value="">Ještě nevím</option><option>do 100 cm</option><option>101–150 cm</option><option>151–180 cm</option><option>181–200 cm</option><option>nad 200 cm</option></select></div>
+              <div class="field"><label for="place">Obec nebo PSČ realizace *</label><input id="place" name="place" autocomplete="address-level2" placeholder="např. Uherské Hradiště" required></div>
+              <div class="field full"><span class="field-label">Co potřebujete zajistit? *</span><div class="choice-row" role="group" aria-label="Rozsah dodávky"><label class="choice"><input type="checkbox" name="service" value="materiál"><span>Jen materiál</span></label><label class="choice"><input type="checkbox" name="service" value="montáž s materiálem"><span>Materiál i montáž</span></label><label class="choice"><input type="checkbox" name="service" value="samotná montáž"><span>Jen montáž</span></label></div><span class="help">Vyberte jednu nebo více možností.</span></div>
+              <div class="field full"><span class="field-label">Doplňky a práce navíc</span><div class="choice-row"><label class="choice"><input type="checkbox" name="extras" value="brána"><span>Brána</span></label><label class="choice"><input type="checkbox" name="extras" value="branka"><span>Branka</span></label><label class="choice"><input type="checkbox" name="extras" value="podhrabové desky"><span>Podhrabové desky</span></label><label class="choice"><input type="checkbox" name="extras" value="demontáž starého plotu"><span>Demontáž starého plotu</span></label><label class="choice"><input type="checkbox" name="extras" value="zaměření"><span>Zaměření na místě</span></label></div></div>
+              <div class="field full"><label for="description">Další informace</label><textarea id="description" name="description" maxlength="2000" placeholder="Například svažitý terén, rohy, počet bran a branek, požadovaný termín nebo barva."></textarea></div>
+            </div>
+            <div class="step-title"><span class="step-number">2</span><h3>Vaše kontaktní údaje</h3></div>
+            <div class="fields">
+              <div class="field"><label for="name">Jméno a příjmení *</label><input id="name" name="name" autocomplete="name" maxlength="120" placeholder="Jan Novák" required></div>
+              <div class="field"><label for="phone">Telefon *</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="+420 777 000 000" required></div>
+              <div class="field full"><label for="email">E-mail *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="190" placeholder="jan@email.cz" required></div>
+            </div>
+            <div class="consent"><span aria-hidden="true">ⓘ</span><span>Odesílání poptávek se připravuje. Údaje z formuláře se zatím nikam neposílají ani neukládají. <a href="ochrana-udaju.html">Více informací</a>.</span></div>
+            <div class="form-actions"><button type="submit" class="button">Odeslat poptávku <span aria-hidden="true">→</span></button><span class="help">Odeslání poptávky samo o sobě neznamená uzavření smlouvy.</span></div>
+            <div id="formStatus" class="status" role="status" aria-live="polite"></div>
+          </form>
         </div>
+        <aside class="aside-card"><h3>Jak bude poptávka pokračovat</h3><div class="aside-steps"><div class="aside-step"><div class="aside-icon">1</div><div><strong>Vyplníte základní údaje</strong><p>Stačí přibližné rozměry, místo a typ plotu.</p></div></div><div class="aside-step"><div class="aside-icon">2</div><div><strong>Upřesníme potřebné detaily</strong><p>Podle zvolené varianty může být potřeba doplnit rozměry nebo fotografie.</p></div></div><div class="aside-step"><div class="aside-icon">3</div><div><strong>Porovnáte možnosti</strong><p>Rozsah dodávky, cenu a termín si potvrdíte před případnou objednávkou.</p></div></div></div><div class="aside-warning">Cena se stanoví podle zvoleného systému, délky, terénu, dopravy a rozsahu montáže. Tento formulář neslibuje automatickou cenovou nabídku.</div></aside>
       </div>
-
-      <!-- Lead form card -->
-      <div id="formular" class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6 lg:p-7">
-        <div class="flex items-start justify-between">
-          <h2 class="text-xl font-bold">Zadat poptávku</h2>
-          <span class="text-xs text-slate-500">* povinné</span>
-        </div>
-        <form class="mt-4 grid grid-cols-1 gap-4" onsubmit="event.preventDefault(); alert('Děkujeme! Vaše poptávka byla odeslána.'); this.reset();">
-          <label class="grid gap-1">
-            <span class="text-sm font-medium">Kategorie *</span>
-            <select required class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-4 focus:ring-primary-200">
-              <option value="" selected disabled>Vyberte kategorii</option>
-              <option>Stavba & řemesla</option>
-              <option>Reklama & tisk</option>
-              <option>Auto & doprava</option>
-              <option>IT & web</option>
-              <option>Ostatní</option>
-            </select>
-          </label>
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <label class="grid gap-1">
-              <span class="text-sm font-medium">Město / PSČ *</span>
-              <input required type="text" placeholder="Uherské Hradiště / 686 01" class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-4 focus:ring-primary-200" />
-            </label>
-            <label class="grid gap-1">
-              <span class="text-sm font-medium">Rozpočet</span>
-              <select class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-4 focus:ring-primary-200">
-                <option>Neuvedeno</option>
-                <option>do 10 000 Kč</option>
-                <option>10–50 tis. Kč</option>
-                <option>50–200 tis. Kč</option>
-                <option>200+ tis. Kč</option>
-              </select>
-            </label>
-          </div>
-
-          <label class="grid gap-1">
-            <span class="text-sm font-medium">Popište poptávku *</span>
-            <textarea required rows="4" placeholder="Krátce popište, co potřebujete…" class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-4 focus:ring-primary-200"></textarea>
-          </label>
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <label class="grid gap-1">
-              <span class="text-sm font-medium">Telefon *</span>
-              <input required type="tel" placeholder="+420 777 000 000" class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-4 focus:ring-primary-200" />
-            </label>
-            <label class="grid gap-1">
-              <span class="text-sm font-medium">E‑mail *</span>
-              <input required type="email" placeholder="jmeno@email.cz" class="rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-4 focus:ring-primary-200" />
-            </label>
-          </div>
-
-          <label class="flex items-start gap-3 text-sm mt-1">
-            <input type="checkbox" required class="mt-1 w-4 h-4 border-slate-300" />
-            <span>Souhlasím se zpracováním osobních údajů pro účely zprostředkování nabídky.</span>
-          </label>
-
-          <button type="submit" class="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 text-white px-4 py-2.5 font-medium hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-200">
-            <span>Odeslat poptávku</span>
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kategorie -->
-  <section id="kategorie" class="py-12 lg:py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-6 mb-6">
-        <h2 class="text-2xl font-bold">Oblíbené kategorie</h2>
-        <a href="#formular" class="text-primary-700 hover:underline text-sm">Zadat poptávku →</a>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Card item -->
-        <a href="#formular" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-soft hover:shadow-lg transition-shadow">
-          <div class="flex items-center justify-between">
-            <h3 class="font-semibold">Stavba & řemesla</h3>
-            <span class="text-xs text-white bg-primary-600 px-2 py-0.5 rounded">nové</span>
-          </div>
-          <p class="mt-2 text-sm text-slate-600">Zedník, beton, rekonstrukce, montáže…</p>
-          <div class="mt-4 text-sm font-medium text-primary-700">Poptat →</div>
-        </a>
-        <a href="#formular" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-soft hover:shadow-lg transition-shadow">
-          <h3 class="font-semibold">Reklama & tisk</h3>
-          <p class="mt-2 text-sm text-slate-600">Tisk, polepy, promo akce, billboardy…</p>
-          <div class="mt-4 text-sm font-medium text-primary-700">Poptat →</div>
-        </a>
-        <a href="#formular" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-soft hover:shadow-lg transition-shadow">
-          <h3 class="font-semibold">Auto & doprava</h3>
-          <p class="mt-2 text-sm text-slate-600">Půjčení auta, stěhování, rozvoz…</p>
-          <div class="mt-4 text-sm font-medium text-primary-700">Poptat →</div>
-        </a>
-        <a href="#formular" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-soft hover:shadow-lg transition-shadow">
-          <h3 class="font-semibold">IT & web</h3>
-          <p class="mt-2 text-sm text-slate-600">Web, e‑shop, grafika, správa sítí…</p>
-          <div class="mt-4 text-sm font-medium text-primary-700">Poptat →</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Jak to funguje -->
-  <section id="jak-to-funguje" class="py-12 lg:py-16 bg-white border-y border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold">Jak to funguje</h2>
-      <div class="mt-6 grid md:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-slate-200 p-6 bg-slate-50">
-          <div class="text-xs font-semibold text-slate-500">KROK 1</div>
-          <h3 class="mt-1 font-semibold">Zadej poptávku</h3>
-          <p class="mt-2 text-slate-600 text-sm">Vyplníš krátký formulář – co, kde a kdy potřebuješ.</p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 p-6 bg-slate-50">
-          <div class="text-xs font-semibold text-slate-500">KROK 2</div>
-          <h3 class="mt-1 font-semibold">My oslovíme dodavatele</h3>
-          <p class="mt-2 text-slate-600 text-sm">Porovnáš nabídky od prověřených firem ve tvém okolí.</p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 p-6 bg-slate-50">
-          <div class="text-xs font-semibold text-slate-500">KROK 3</div>
-          <h3 class="mt-1 font-semibold">Vybereš tu nejlepší</h3>
-          <p class="mt-2 text-slate-600 text-sm">Domluvíš termín a cenu – jednoduše a nezávazně.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reference -->
-  <section id="reference" class="py-12 lg:py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-6">
-        <h2 class="text-2xl font-bold">Co říkají uživatelé</h2>
-        <a href="#formular" class="text-primary-700 hover:underline text-sm">Chci poptat →</a>
-      </div>
-      <div class="mt-6 grid md:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-          <p class="text-sm text-slate-700">„Rychlé nabídky od tří firem na rekonstrukci koupelny. Ušetřil jsem čas i peníze.“</p>
-          <div class="mt-4 text-xs text-slate-500">Milan, Zlín</div>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-          <p class="text-sm text-slate-700">„Potřebovali jsme potisk triček na akci. Nabídka i dodání do 48 hodin.“</p>
-          <div class="mt-4 text-xs text-slate-500">Lucie, Brno</div>
-        </div>
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-          <p class="text-sm text-slate-700">„Sehnal jsem dodávku na stěhování ještě na ten den. Pecka.“</p>
-          <div class="mt-4 text-xs text-slate-500">Petr, Uherské Hradiště</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA pás -->
-  <section class="py-10 bg-primary-600 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <h3 class="text-xl font-bold">Připraven získat nabídky? Zadej poptávku zdarma.</h3>
-      <a href="#formular" class="inline-flex items-center justify-center rounded-lg bg-white text-primary-700 px-4 py-2.5 font-medium hover:bg-slate-100">Zadat poptávku</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-10 bg-white border-t border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8 text-sm">
-      <div>
-        <div class="text-lg font-black">PoptejCenu.cz</div>
-        <p class="mt-2 text-slate-600">Centrální brána pro poptávky v rámci AO Group. Jednotný formulář → nabídky od firem.</p>
-      </div>
-      <div>
-        <div class="font-semibold">Rychlé odkazy</div>
-        <ul class="mt-2 space-y-2">
-          <li><a href="#kategorie" class="hover:text-primary-700">Kategorie</a></li>
-          <li><a href="#jak-to-funguje" class="hover:text-primary-700">Jak to funguje</a></li>
-          <li><a href="#formular" class="hover:text-primary-700">Zadat poptávku</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="font-semibold">Pro firmy</div>
-        <ul class="mt-2 space-y-2">
-          <li><a href="#" class="hover:text-primary-700">Přidat firmu</a> <span class="text-[11px] text-slate-500">(brzy)</span></li>
-          <li><a href="#" class="hover:text-primary-700">Ceník leadů</a> <span class="text-[11px] text-slate-500">(brzy)</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="mt-8 text-center text-xs text-slate-500">© <span id="year"></span> PoptejCenu.cz · Všechna práva vyhrazena</div>
-  </footer>
-
+    </section>
+    <section class="section how" id="jak-to-funguje"><div class="container"><div class="section-heading"><div class="eyebrow">Jednoduchý postup</div><h2>Od výběru plotu k přesnému nacenění</h2><p>Každá realizace je trochu jiná. Čím přesnější podklady pošlete, tím lépe lze poptávku posoudit.</p></div><div class="how-grid"><article class="how-card"><span class="step-number">1</span><h3>Vyberete typ oplocení</h3><p>Panelový, pletivový, betonový, hliníkový, gabionový a další varianty podle členění Plotao.</p></article><article class="how-card"><span class="step-number">2</span><h3>Doplníte místo a rozsah</h3><p>Uveďte délku, přibližnou výšku a zda potřebujete materiál, montáž nebo obojí.</p></article><article class="how-card"><span class="step-number">3</span><h3>Domluvíte podrobnosti</h3><p>U sklonu terénu, bran a atypických řešení se detaily upřesňují před konečnou nabídkou.</p></article></div></div></section>
+    <section class="bottom-cta"><div class="container bottom-cta-row"><div><h2>Víte, jaký plot hledáte?</h2><p>Vyberte jeho typ a připravte nezávaznou poptávku.</p></div><a class="button" href="#typy">Vybrat typ plotu <span aria-hidden="true">↑</span></a></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-row"><div><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20V7l8-4 8 4v13M8 20v-6h8v6M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Poptej<em>Cenu</em>.cz</span></a><p>© <span id="year"></span> PoptejCenu.cz</p></div><div class="footer-links"><a href="#typy">Typy plotů</a><a href="#formular">Poptat plot</a><a href="ochrana-udaju.html">Ochrana osobních údajů</a></div></div></footer>
   <script>
-    // Rok ve footru
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobilní menu – otevřít/zavřít, zavřít po kliku na odkaz
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    function closeMenu(){
-      mobileMenu.classList.add('hidden');
-      hamburger.setAttribute('aria-expanded','false');
-    }
-    hamburger.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      hamburger.setAttribute('aria-expanded', String(isHidden));
+    const fenceTypes = [
+      {id:'panelovy',name:'Panelový plot',desc:'2D nebo 3D panely',image:'panelovy-3d.webp',variants:['Panelový 2D','Panelový 3D']},
+      {id:'pletivovy',name:'Pletivový plot',desc:'Klasické, svařované i další pletivo',image:'pletivovy.webp',variants:['Klasické pletivo','Poplastované pletivo','Pozinkované pletivo','Svařované pletivo','Lesnické pletivo','Chovatelské pletivo','Bezpečnostní pletivo']},
+      {id:'betonovy',name:'Betonový plot',desc:'Jednostranné i oboustranné provedení',image:'betonovy.webp',variants:['Jednostranný betonový','Oboustranný betonový','Dekorativní betonový']},
+      {id:'hlinikovy',name:'Hliníkový plot',desc:'Moderní vodorovné i svislé výplně',image:'hlinikovy.webp',variants:['Vodorovné lamely','Svislé lamely','Plná výplň','Žaluziové lamely','Kombinace']},
+      {id:'soukromi',name:'Plot na soukromí',desc:'WPC, PVC, dřevo a neprůhledné výplně',image:'soukromi-lamely.webp',variants:['WPC','PVC','Dřevěná výplň','Lamelová výplň','Jiná plná výplň']},
+      {id:'gabionovy',name:'Gabionový plot',desc:'2D gabionový systém nebo klasický gabion',image:'gabionovy.webp',variants:['Gabionový 2D systém','Klasický gabion']},
+      {id:'kovovy',name:'Kovový a kovaný plot',desc:'Svařované, palisádové i kované výplně',image:'category-metal.webp',variants:['Svařovaný kovový','Palisádový','Kovaný','Laserem řezaná výplň','Jiný kovový']},
+      {id:'zdeny',name:'Zděný plot',desc:'Tvárnice, cihla, kámen i kombinace',image:'category-masonry.webp',variants:['Štípané tvárnice','Cihlový plot','Kamenný plot','Zděné sloupky s výplní','Jiný zděný']},
+      {id:'mobilni',name:'Mobilní oplocení',desc:'Panely a zábrany pro dočasné použití',image:'category-mobile.webp',variants:['Mobilní plotové panely','Mobilní zábrany']},
+      {id:'specialni',name:'Speciální oplocení',desc:'Bezpečnostní, protihlukové, bazénové a atypické',image:'category-other.webp',variants:['Bezpečnostní oplocení','Protihlukové oplocení','Bazénové oplocení','Oplocení pro zvířata','Atypické oplocení']}
+    ];
+    const imgBase='https://plotao.cz/assets/fence-types/';
+    const grid=document.getElementById('fenceGrid');
+    const form=document.getElementById('leadForm');
+    const typeField=document.getElementById('fenceType');
+    const subtype=document.getElementById('subtype');
+    const status=document.getElementById('formStatus');
+    let selectedType=null;
+    fenceTypes.forEach(item=>{
+      const card=document.createElement('button'); card.type='button'; card.className='fence-card'; card.setAttribute('aria-pressed','false'); card.setAttribute('aria-label',item.name+' – vybrat');
+      card.innerHTML='<span class="selected-mark" aria-hidden="true">✓</span><img loading="lazy" decoding="async" src="'+imgBase+item.image+'" alt="'+item.name+'" onerror="this.style.display=\'none\'"><div class="fence-card-copy"><h3>'+item.name+'</h3><p>'+item.desc+'</p></div>';
+      card.addEventListener('click',()=>selectType(item)); grid.appendChild(card);
     });
-    mobileMenu.querySelectorAll('[data-close="menu"]').forEach(a => a.addEventListener('click', closeMenu));
-
-    // Jednoduché ověření formuláře + reset je v onsubmit handleru ve formuláři
+    function selectType(item){
+      selectedType=item; typeField.value=item.name;
+      document.querySelectorAll('.fence-card').forEach((card,index)=>card.setAttribute('aria-pressed',String(fenceTypes[index].id===item.id)));
+      subtype.innerHTML='<option value="">Vyberte provedení</option>'+item.variants.map(v=>'<option value="'+v+'">'+v+'</option>').join('');
+      document.getElementById('subtypeHelp').textContent='Možnosti odpovídají členění konkrétního typu na Plotao.cz.';
+      status.className='status'; status.textContent='';
+      if(!subtype.closest('.field').querySelector('.type-selected')){const tag=document.createElement('span');tag.className='help type-selected';subtype.closest('.field').appendChild(tag)}
+      subtype.closest('.field').querySelector('.type-selected').textContent='Vybráno: '+item.name;
+      document.getElementById('formular').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+    document.getElementById('menuButton').addEventListener('click',function(){const nav=document.getElementById('mainNav');const open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});
+    document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('mainNav').classList.remove('open');document.getElementById('menuButton').setAttribute('aria-expanded','false')}));
+    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('startedAt').value=String(Date.now());
+    form.addEventListener('submit',event=>{
+      event.preventDefault(); status.className='status'; status.textContent='';
+      if(!selectedType){status.className='status show error';status.textContent='Nejprve vyberte typ plotu z přehledu výše.';document.getElementById('typy').scrollIntoView({behavior:'smooth'});return}
+      const services=[...form.querySelectorAll('input[name="service"]')];services.forEach(x=>x.setCustomValidity(''));if(!services.some(x=>x.checked)){services[0].setCustomValidity('Vyberte, zda potřebujete materiál, montáž, nebo obojí.');services[0].reportValidity();services[0].setCustomValidity('');return}
+      if(!form.reportValidity())return;
+      // The form stays local until a verified delivery endpoint is configured.
+      status.className='status show error';status.textContent='Formulář je připravený, ale odesílání zatím není napojené na e-mail ani databázi. Vaše údaje nebyly nikam odeslány. Tuto stránku zatím nepoužívejte ke sběru poptávek.';
+    });
   </script>
 </body>
 </html>
