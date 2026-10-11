@@ -162,7 +162,7 @@
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.textContent='☰'; }));
   const typeSelect=$('#type');
   const fenceCards=[...document.querySelectorAll('.type-card[data-fence-type]')];
-  const syncFenceCardSelection=value=>fenceCards.forEach(card=>{const options=(card.dataset.fenceOptions||card.dataset.fenceType).split('|');card.setAttribute('aria-pressed',String(options.includes(value));});
+  const syncFenceCardSelection=value=>fenceCards.forEach(card=>{const options=(card.dataset.fenceOptions||card.dataset.fenceType).split('|');card.setAttribute('aria-pressed',String(options.includes(value)));});
   fenceCards.forEach(card=>card.addEventListener('click',()=>{
     typeSelect.value=card.dataset.fenceType;
     typeSelect.dispatchEvent(new Event('change',{bubbles:true}));
