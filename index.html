@@ -245,9 +245,12 @@
       .process-section{padding-top:0}
     }
 
-    /* Desktop: spodní hrana fotosekce lícuje s textem „Je to rychlé a jednoduché“ */
+    /* Desktop: fotka vyplní obrazovku a závěrečný text sedí u spodní hrany */
     @media(min-width:761px){
-      .hero-grid{padding-bottom:2px!important}
+      .hero{min-height:calc(100vh - 78px)}
+      .hero-grid{min-height:calc(100vh - 99px);padding-top:9px;padding-bottom:12px}
+      .hero-copy{min-height:calc(100vh - 99px);display:flex;flex-direction:column;align-items:flex-start}
+      .process-teaser{margin-top:auto}
     }
     /* Mobilní úvodní sekce vyvážená podle vyznačené výšky */
     @media(max-width:760px){
