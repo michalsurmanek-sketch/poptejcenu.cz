@@ -297,6 +297,21 @@
     .status { font-size: 16px !important; }
     .brand small { font-size: 11px !important; line-height: 1.2 !important; }
   </style>
+  <style id="desktop-hero-spacing">
+    @media(min-width:761px){
+      .hero-copy{justify-content:flex-start}
+      .hero h1{font-size:clamp(48px,4.5vw,64px);line-height:1.02;margin:14px 0 12px}
+      .hero p{font-size:19px;line-height:1.45}
+      .hero-benefits{margin-top:auto;margin-bottom:clamp(20px,3vh,34px);gap:14px}
+      .hero-benefit{font-size:14px}
+      .hero-benefit strong{font-size:16px}
+      .hero-benefit-icon{width:52px;height:52px}
+      .hero-benefit-icon svg{width:35px;height:35px}
+      .hero-actions{flex-direction:row;gap:12px;width:100%;max-width:610px;margin-bottom:auto}
+      .hero-actions .btn{flex:1;width:auto;min-height:50px;font-size:17px}
+      .process-teaser{margin-top:auto}
+    }
+  </style>
 </head>
 <body>
 
