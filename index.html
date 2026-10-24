@@ -357,7 +357,7 @@
   .footer .footer-brand .brand-icon svg{width:36px;height:36px}
   .footer .footer-brand .brand small{font-size:12px;line-height:1.45;margin-top:5px;max-width:220px;white-space:normal}
 }
-</style></head>
+</style><style id="pc-shared-header-style">.pc-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e0e6e0;font-family:Inter,system-ui,sans-serif}.pc-header *{box-sizing:border-box}.pc-header-inner{max-width:1180px;width:calc(100% - 32px);margin:auto;min-height:72px;display:flex;align-items:center;gap:22px}.pc-logo{display:flex;align-items:center;gap:10px;color:#183f35;text-decoration:none;font-size:23px;font-weight:850;letter-spacing:-.8px;white-space:nowrap;line-height:1.1}.pc-logo-icon{width:43px;height:43px;border-radius:12px;display:grid;place-items:center;color:white;background:#003e31;flex:none}.pc-gold{color:#eaaa16}.pc-logo small{display:block;font-size:10px;font-weight:550;color:#67736b;letter-spacing:0;margin-top:3px}.pc-nav{display:flex;gap:18px;align-items:center;margin-left:auto}.pc-nav a{font-size:13px;color:#183f35;text-decoration:none;font-weight:700;white-space:nowrap}.pc-nav a[aria-current=page]{border-bottom:3px solid #f5b51b;padding-bottom:5px}.pc-action{background:#003e31;color:#fff;text-decoration:none;border-radius:9px;padding:12px 16px;font-size:13px;font-weight:750;white-space:nowrap}.pc-menu{display:none;background:#003e31;color:#fff;border:0;border-radius:9px;width:42px;height:42px;font-size:22px;cursor:pointer}@media(max-width:1020px){.pc-nav{gap:10px}.pc-nav a{font-size:12px}.pc-logo{font-size:19px}.pc-header-inner{gap:12px}}@media(max-width:800px){.pc-header-inner{min-height:65px}.pc-logo{font-size:clamp(17px,4.4vw,22px);min-width:0}.pc-logo-icon{width:39px;height:39px}.pc-logo small{font-size:8px}.pc-nav{display:none;position:absolute;top:100%;left:0;right:0;background:white;padding:16px 20px;box-shadow:0 14px 20px #0002;flex-direction:column;align-items:stretch;gap:0}.pc-nav.pc-open{display:flex}.pc-nav a{padding:12px;font-size:15px}.pc-action{display:none}.pc-menu{display:block;margin-left:auto;flex:none}}html,body{max-width:100%;overflow-x:clip}</style></head>
 <body>
 
 <div class="launch-overlay" id="launchOverlay" hidden>
@@ -377,12 +377,7 @@
   </section>
 </div>
 
-<header class="topbar"><div class="wrap nav">
-  <a class="brand" href="#nahoru" aria-label="PoptejCenu.cz – úvod"><span class="brand-icon" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 21V7l2-2 2 2v14M10 21V7l2-2 2 2v14M16 21V7l2-2 2 2v14M4 13h16M4 17h16"/></svg></span><span>Poptej<span class="brand-gold">Cenu</span>.cz<small>Ploty na míru · kvalita · rychlé vyřízení</small></span></a>
-  <nav class="navlinks" id="navLinks" aria-label="Hlavní navigace"><a href="#typy">Typy plotů</a><a href="#postup">Jak to funguje</a><a href="firmy.html">Pro firmy</a><a class="btn btn-gold mobile-quote-btn" href="#poptavka">Poptat cenu <span aria-hidden="true">↗</span></a></nav>
-  <a class="btn btn-gold" href="#poptavka">Nezávazně poptat <span aria-hidden="true">↗</span></a>
-  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Otevřít menu">☰</button>
-</div></header>
+<div id="pc-header-root"><header class="pc-header"><div class="pc-header-inner"><a class="pc-logo" href="/"><span class="pc-logo-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 21V7l2-2 2 2v14M10 21V7l2-2 2 2v14M16 21V7l2-2 2 2v14M4 13h16M4 17h16"/></svg></span><span>Poptej<span class="pc-gold">Cenu</span>.cz<small>Ploty na míru · kvalita · rychlé vyřízení</small></span></a><nav class="pc-nav" id="pcNav" aria-label="Hlavní navigace"><a href="/">Pro zákazníky</a><a href="/firmy.html">Pro dodavatele</a><a href="/#typy">Typy plotů</a><a href="/#postup">Jak to funguje</a><a href="mailto:info@poptejcenu.cz">Kontakt</a></nav><a class="pc-action" href="/#poptavka">Nezávazně poptat ↗</a><button class="pc-menu" type="button" aria-label="Otevřít navigaci" aria-controls="pcNav" aria-expanded="false">☰</button></div></header></div>
 <main>
 <section class="hero" id="nahoru"><div class="wrap hero-grid"><div class="hero-copy">
   <span class="eyebrow"><i></i> Rychlá cesta k novému plotu</span>
@@ -519,5 +514,5 @@
 })();
 </script>
 
-</body>
+<script src="/assets/shared-header.js" defer></script></body>
 </html>
