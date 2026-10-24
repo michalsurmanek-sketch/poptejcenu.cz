@@ -112,7 +112,8 @@ html,body{max-width:100%;overflow-x:clip}
 <input type="hidden" name="form_type" value="partner"><input type="hidden" name="started_at" id="started"><div class="honeypot" aria-hidden="true"><label for="website">Nevyplňujte</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
 <div class="grid">
 <div class="field"><label for="company">Název firmy *</label><input id="company" name="company" required maxlength="160" autocomplete="organization"></div>
-<div class="field"><label for="ico">IČO</label><input id="ico" name="ico" inputmode="numeric" maxlength="8" pattern="[0-9]{8}" placeholder="8 číslic"></div>
+<div class="field"><label for="ico">IČO – automatické doplnění firmy</label><input id="ico" name="ico" inputmode="numeric" maxlength="8" pattern="[0-9]{8}" placeholder="Zadejte 8 číslic" autocomplete="off"><small id="icoHint" role="status" aria-live="polite" style="font-size:12px;color:#245a4a">Po zadání IČO vyhledáme firmu v registru ARES.</small></div>
+<div class="field"><label for="address">Sídlo firmy (z ARES)</label><input id="address" name="company_address" maxlength="300" autocomplete="street-address"></div>
 <div class="field"><label for="contact">Kontaktní osoba *</label><input id="contact" name="name" required maxlength="120" autocomplete="name"></div>
 <div class="field"><label for="email">E-mail *</label><input id="email" name="email" type="email" required maxlength="190" autocomplete="email"></div>
 <div class="field"><label for="phone">Telefon *</label><input id="phone" name="phone" type="tel" required maxlength="30" autocomplete="tel"></div>
@@ -143,4 +144,26 @@ try{const endpoint=document.querySelector('meta[name="form-endpoint"]')?.content
 catch(err){status.className='status error';status.textContent='Webové odeslání teď není dostupné. Připravili jsme registrační e-mail na info@poptejcenu.cz: ';const body=Object.entries(data).filter(([k])=>!['consent','form_type','website','started_at'].includes(k)).map(([k,v])=>k+': '+(Array.isArray(v)?v.join(', '):v)).join('\n');const a=document.createElement('a');a.href='mailto:info@poptejcenu.cz?subject='+encodeURIComponent('Registrace firmy – PoptejCenu.cz')+'&body='+encodeURIComponent(body);a.textContent='Otevřít e-mail';status.append(a)}
 finally{btn.disabled=false;btn.textContent='Odeslat registraci firmy'}
 });
+</script>
+<script id="ares-company-helper">
+(()=>{
+const ico=document.getElementById('ico'), company=document.getElementById('company'),address=document.getElementById('address'),hint=document.getElementById('icoHint');
+let last='',controller=null;
+const setHint=(message,bad=false)=>{hint.textContent=message;hint.style.color=bad?'#a3312e':'#245a4a'};
+async function lookup(){
+const value=ico.value.replace(/\D/g,'');if(value.length!==8){if(controller)controller.abort();last='';setHint('Po zadání 8 číslic automaticky vyhledáme firmu.');return}
+if(value===last)return;last=value;if(controller)controller.abort();controller=new AbortController();
+setHint('Vyhledávám firmu v ARES…');
+try{
+const response=await fetch('https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/'+encodeURIComponent(value),{signal:controller.signal,headers:{'Accept':'application/json'}});
+if(!response.ok)throw Error(response.status===404?'Firma s tímto IČO nebyla nalezena.':'ARES momentálně neodpovídá.');
+const data=await response.json();if(ico.value.replace(/\D/g,'')!==value)return;
+if(data.obchodniJmeno)company.value=data.obchodniJmeno;
+const a=data.sidlo||{};address.value=a.textovaAdresa||[a.nazevUlice,a.cisloDomovni,a.nazevObce,a.psc].filter(Boolean).join(', ');
+setHint('✓ Firma nalezena. Název a sídlo byly doplněny; kontaktní osobu a spojení vyplňte ručně.');
+}catch(error){if(error.name==='AbortError')return;last='';setHint(error.message==='Failed to fetch'?'ARES se nepodařilo načíst (může jít o omezení přístupu). Údaje vyplňte ručně.':error.message,true)}
+}
+ico.addEventListener('input',()=>{ico.value=ico.value.replace(/\D/g,'').slice(0,8);lookup()});
+ico.addEventListener('blur',lookup);
+})();
 </script></body></html>
